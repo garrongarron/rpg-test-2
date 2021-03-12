@@ -22,6 +22,12 @@ body {
     justify-content: center;
     flex-direction: column;
 }
+#c{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+}
 
 .play-now>h1 {
     font-family: 'gotic';

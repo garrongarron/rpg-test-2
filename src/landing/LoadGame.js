@@ -1,5 +1,6 @@
 import longTimeAgo from "./LongTimeAgo.js"
 import play from './Music.js'
+import init from '../basic/Renderer.js'
 
 let btn = document.createElement('div')
 btn.innerHTML = "Play Now"
@@ -12,21 +13,18 @@ btn.addEventListener('click', () => {
     setTimeout(() => {
         btn.classList.add('hide')
         title.classList.add('hide')
-        
     }, 2000);
     setTimeout(() => {
         document.querySelector('#container').classList.add('hide')
         start = true
         longTimeAgo()
+        init()//HERE
     }, 4*1000);
 })
 
 
 let title = document.createElement('h1')
 title.innerText = 'The Warrior'
-
-
-
 
 let container = document.createElement('div')
 container.appendChild(title)

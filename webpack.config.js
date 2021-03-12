@@ -2,6 +2,9 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+
+
 
 module.exports = {
   mode: "production",
@@ -36,14 +39,14 @@ module.exports = {
           use: ['css-loader', 'sass-loader']
         })
       }, {
-        test: /\.(glb|gltf)$/i,
+        test: /\.(fbx)$/i,
         use:[
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
               outputPath: 'assets/',
-              publicPath: '/'
+              publicPath: 'dist/models'
             }
           }
         ],
@@ -72,6 +75,18 @@ module.exports = {
           }
         ],
       },{
+        test: /\.(jpg)$/i,
+        use:[
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+              publicPath: 'dist/images'
+            }
+          }
+        ],
+      },{
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
@@ -93,6 +108,13 @@ module.exports = {
       hash: true,
       template: './src/index.html',
       filename: 'index.html',
-    })
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "src/warrior/SwordAndShield", to: "models/SwordAndShield" },
+        { from: "src/trees/models", to: "models/Threes" },
+        // { from: "other", to: "public" },
+      ],
+    }),
   ]
 };
