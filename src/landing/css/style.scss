@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'gotic';
+    src: url("../../fonts/Seagram-tfb.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+}
+
+.play-now {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.play-now>h1 {
+    font-family: 'gotic';
+    font-size: 5em;
+    /* text-shadow: 0px 0px 8px orange; */
+    color: brown;
+    user-select: none;
+    user-select: none;
+    background: -webkit-linear-gradient(#fc0404, rgb(248, 224, 8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.play-now>div {
+    font-size: 2em;
+    font-family: sans-serif;
+    background-color: #111111;
+    padding: .3em .8em;
+    border-radius: 1em;
+    /* border: 3px solid black; */
+    color: white;
+    font-weight: bolder;
+    text-shadow: 0px 0px 8px rgb(71, 79, 85);
+    box-shadow: 0px 0px 8px red;
+    font-family: 'gotic';
+    color: rgb(214, 202, 96);
+    cursor: pointer;
+    user-select: none;
+}
+
+.hide {
+    display: none !important;
+}
+
+.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: 4s;
+}
+
+.fadeOut2 {
+    animation-name: fadeOut;
+    animation-duration: 2s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
