@@ -1,3 +1,8 @@
 /node_modules
-
 package-lock.json
+
+/dist/audio
+/dist/fonts
+/dist/images
+/dist/models
+/dist/shaders

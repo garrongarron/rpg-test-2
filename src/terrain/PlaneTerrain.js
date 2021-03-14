@@ -38,7 +38,6 @@ let loadPlaneTerrain = (scene) => {
       x: 0 + unit * .5,
       y: 0 + unit * .5
     }
-    manager.getArround(offset)
     setPosition()
   })
   loadTextures()

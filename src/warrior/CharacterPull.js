@@ -27,8 +27,8 @@ let create = (name) => {
         object.free = true
         DB[object.uuid] = object
     })
-
 }
+
 
 let createObjByName = (peerId) => {
     let free = Object.keys(DB).filter(obj => DB[obj].free)
@@ -56,10 +56,28 @@ let getObjByName = (name) => {
         return DB[element]
     }
 }
+let createInPromise = (name) => {
+    let promise = new Promise((resolve, reject) => {
+        loader.load('dist/models/SwordAndShield/' + fileList[0], function (object) {
+            object.position.set(0, 0, 0)
+            object.rotation.y = Math.PI
+            let s = 0.02
+            object.scale.set(s, s, s)
+            object.name = name
+            object.free = false
+            DB[object.uuid] = object
+            resolve(object)
+        })
+    })
+    return promise
+}
+
 let characters = {
     createObjByName,
     getObjByName,
-    deleteObject
+    deleteObject,
+    create,
+    createInPromise
 }
 export default characters
-export { createDb }
+export { createDb, createInPromise }

@@ -1,13 +1,17 @@
 import longTimeAgo from "./LongTimeAgo.js"
 import play from './Music.js'
-import init from '../basic/Renderer.js'
+// import init from '../basic/Renderer.js'
+import goTo from '../scenes/SceneHandler.js';
+import { loadPalading } from "../loader/Loader.js";
 
 let btn = document.createElement('div')
 btn.innerHTML = "Play Now"
-
+btn.classList.add('beating1')
 btn.addEventListener('click', () => {
     play()
+
     document.querySelector('#container').classList.add('fadeOut')
+    btn.classList.remove('beating1')
     btn.classList.add('fadeOut2')
     title.classList.add('fadeOut2')
     setTimeout(() => {
@@ -17,8 +21,15 @@ btn.addEventListener('click', () => {
     setTimeout(() => {
         document.querySelector('#container').classList.add('hide')
         start = true
-        longTimeAgo()
-        init()//HERE
+        loadPalading().then((paladin)=>{
+            longTimeAgo()
+            goTo('intro')
+        })
+         
+        // init()//HERE
+        // setTimeout(() => {
+            
+        // }, 4*1000);
     }, 4*1000);
 })
 

@@ -19,11 +19,18 @@ let loadAnimations = (callback) => {
         })
     }
 
-    Promise.all(promises).then(() => {
-        ready = true
+    
+    let out  = new Promise((resolve, reject)=>{
+        Promise.all(promises).then(() => {
+            ready = true
+            if(typeof callback === 'function') callback(animations)
+            resolve(animations)
+        })
     })
+    return out
     // console.log('start loading animations');
 }
+
 
 let getAnimations = () => {
     if (!ready) return []

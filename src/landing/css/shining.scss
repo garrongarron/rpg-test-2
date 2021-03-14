@@ -26,13 +26,20 @@ div.shining .gradient{
     animation: animate 8s linear;
     -webkit-background-clip: text;
     -webkit-text-fill-color: rgba(255, 255, 255, 0);
+    opacity: 0;
   }
   
   @keyframes animate {
     0% {
+      opacity: 1;
       background-position: -500%;
+    }
+    90% {
+      background-position: 500%;
+      opacity: 1;
     }
     100% {
       background-position: 500%;
+      opacity: 1;
     }
   }

@@ -7,7 +7,6 @@ let box = new Mesh(
 let s = 1 / 0.02
 s = 1
 box.scale.set(s, s, s)
-box.position.set(5, -4 * s, 5);
 box.position.set(0, 0, 0);
 box.castShadow = true;
 box.receiveShadow = true;

@@ -1,7 +1,7 @@
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import fileList from "./FileList.js";
 
-// import gravity from '../character/Gravity.js'
+import gravity from '../gravity/Gravity.js'
 
 let trees = []
 let loadTrees = (scene) => {
@@ -23,28 +23,28 @@ let loadTrees = (scene) => {
             return object
         });
 
-        setTimeout(() => {
+        // setTimeout(() => {
             let i = 0
             let nn = 0
-            while (i < 80) { //&& nn < 2000
+            while (i < 20 && nn < 200) { //&& nn < 2000
                 nn++
                 let p = {
-                    x: Math.random() * 512 - 256,
+                    x: Math.random() * 100 - 50,
                     y: 0,
-                    z: Math.random() * 512 - 256
+                    z: Math.random() * 500 +20
                 }
-                // let g = gravity.check(p)
-                // if (g.tmp) {
-                    // p.y = 1 - g.tmp.distance
+                let g = gravity.check(p)
+                if (g.tmp) {
+                    p.y = 1 - g.tmp.distance
                     // if (p.y < 0.1) continue
                     // console.log(g.tmp.distance, p);
                     let tree = trees[Math.floor(Math.random() * trees.length)].clone()
                     tree.position.set(p.x, p.y, p.z)
                     scene.add(tree)
                     i++
-                // }
+                }
             }
-        }, 1000 * 5);
+        // }, 1);
     }
 
     const loader = new FBXLoader();
@@ -58,7 +58,6 @@ let loadTrees = (scene) => {
         })
     }
     Promise.all(promises).then((a) => {
-        console.log('ALL LOADED');
         load()
     })
 }

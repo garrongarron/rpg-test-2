@@ -20,14 +20,14 @@ setTimeout(() => {
 
 let warrior = null
 let warrior2 = null
-let h = 10
+let h = 20
 let cameraOut = false
-camera.position.z = -25
+camera.position.z = -15
 machine.addCallback(() => {
     if (warrior) {
         let x, z
         x = warrior.position.x
-        h = h - getDelta()
+        h = h - getDelta()*1.5
         z = warrior.position.z
         camera.lookAt(x, h, z)
         if (h + .5 < camera.position.y) {
@@ -46,19 +46,22 @@ machine.addCallback(() => {
         warrior2.position.set(
             warrior2.position.x,
             warrior2.position.y,
-            warrior2.position.z - getDelta() * 3
+            warrior2.position.z - getDelta() * 2
         )
     }
     camera.position.set(
         camera.position.x,
         camera.position.y,
-        camera.position.z + getDelta() /2,
+        camera.position.z + getDelta() / 3,
     )
 })
 let animator
 let setWarrior = (w) => {
-    warrior = w
-    animator = new Animator(warrior)
-    animator.action(26, 1, true)
+    setTimeout(() => {
+        machine.run()
+        warrior = w
+        animator = new Animator(warrior)
+        animator.action(26, 1, true)
+    }, 8 * 1000);
 }
 export default setWarrior
