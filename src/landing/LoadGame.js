@@ -9,7 +9,6 @@ btn.innerHTML = "Play Now"
 btn.classList.add('beating1')
 btn.addEventListener('click', () => {
     play()
-
     document.querySelector('#container').classList.add('fadeOut')
     btn.classList.remove('beating1')
     btn.classList.add('fadeOut2')
