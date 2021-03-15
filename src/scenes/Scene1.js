@@ -9,6 +9,7 @@ import Animator from '../basic/Animator.js'
 import { MathUtils } from 'three'
 import machine from '../basic/Machine.js'
 import { getDelta } from '../basic/Clock.js'
+import show from './Scene1/Buttons.js'
 
 class Scene1 {
     constructor(goTo) {
@@ -27,7 +28,13 @@ class Scene1 {
                 this.paladin.position.z,
             )
             this.h -= 0.01
-            // console.log(MathUtils.clamp(this.h, this.limit, this.h_initial));
+            if (this.h < this.limit) {
+                this.machine.removeCallback(this.cb)
+                setTimeout(() => {
+                    show()
+                }, 10*1000);
+            }
+            console.log('a');
         }
     }
     next() {
@@ -35,23 +42,23 @@ class Scene1 {
     }
     start() {
         this.h = this.h_initial
-        
+
         scene.add(directionalLight);
         scene.add(ambientLight);
         scene.add(hemiLight);
         scene.add(pointLight);
         // scene.add(box)
 
-        // scene.add(sky)
+
         setFog(scene)
-        document.addEventListener('click', this.keyListener[0])
+        // document.addEventListener('click', this.keyListener[0])
         loadPalading().then(paladin => {
             this.paladin = paladin
             scene.add(paladin)
             setTimeout(() => {
                 this.machine.addCallback(this.cb)
-                
-            }, 5*1000);
+
+            }, 5 * 1000);
             camera.position.set(0, 2, -7)
             camera.lookAt(
                 this.paladin.position.x,
@@ -61,10 +68,6 @@ class Scene1 {
             this.animator = new Animator(this.paladin)
             this.animator.action(26, 1, true)
         })
-        
-
-
-
     }
     stop() {
         scene.remove(directionalLight);
@@ -76,9 +79,15 @@ class Scene1 {
         resetFog(scene)
         this.machine.removeCallback(this.cb)
         scene.remove(this.paladin)
-        document.removeEventListener('click', this.keyListener[0])
+        // document.removeEventListener('click', this.keyListener[0])
         this.animator.off()
     }
 }
 
 export default Scene1
+// directionalLight.intensity = 0.01
+// ambientLight.intensity *= 0.01
+// hemiLight.intensity *= 0.01
+// sky.material.uniforms.topColor.value.r *= 0.01
+// sky.material.uniforms.topColor.value.g *= 0.01
+// sky.material.uniforms.topColor.value.b *= 0.01

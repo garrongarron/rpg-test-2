@@ -6,6 +6,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -96,3 +97,64 @@ body {
     }
 }
 
+
+/*Scene 1*/
+.scene1-menu{
+    position: fixed;
+    top: 15vh;
+    width: 70vw;
+    height: 40vh;
+    left: 15vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px;
+    z-index: 1;
+    
+    .scene1-start, .scene1-tutorial{
+        padding: 1vw;
+        background-color: #f90000;
+        color: #ffffff;
+        width: 10vw;
+        text-align: center;
+        font-family: 'gotic';
+        z-index: 1;
+        font-size: 2em;
+        border-radius: 10px;
+        box-shadow: 0px 0px 8px #ff0000;
+        text-shadow: 0px 0px 4px white;
+        cursor: pointer;
+        user-select: none;
+    }
+    .scene1-start:hover, .scene1-tutorial:hover{
+        box-shadow: 0px 0px 8px #ffffff;
+        text-shadow: 0px 0px 4px #ff0000;
+        background-color: #ffffff;
+        color: #f90000;
+    }
+}
+.scene1-background{
+    background-color: #111111;
+    position: fixed;
+    top: 15vh;
+    width: 70vw;
+    height: 40vh;
+    left: 15vw;
+    border-radius: 15px;
+    opacity: .5;
+    border: 2px solid white;
+    box-shadow: 0px 0px 8px white;
+}
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 3s;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
